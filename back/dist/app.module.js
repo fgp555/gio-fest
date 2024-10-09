@@ -14,6 +14,7 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("./config/typeorm");
 const user_module_1 = require("./user/user.module");
+const event_module_1 = require("./event/event.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,6 +30,8 @@ exports.AppModule = AppModule = __decorate([
                 useFactory: (configService) => configService.get('typeorm'),
             }),
             user_module_1.UserModule,
+            user_module_1.UserModule,
+            event_module_1.EventModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

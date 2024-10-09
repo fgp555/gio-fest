@@ -9,40 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserEntity = void 0;
+exports.Event = void 0;
 const typeorm_1 = require("typeorm");
-let UserEntity = class UserEntity {
+const user_entity_1 = require("../user/user.entity");
+let Event = class Event {
 };
-exports.UserEntity = UserEntity;
+exports.Event = Event;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], UserEntity.prototype, "id", void 0);
+], Event.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], UserEntity.prototype, "email", void 0);
+], Event.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], UserEntity.prototype, "password", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "firstName", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ length: 100 }),
-    __metadata("design:type", String)
-], UserEntity.prototype, "lastName", void 0);
-__decorate([
-    (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], UserEntity.prototype, "createdAt", void 0);
+], Event.prototype, "date", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)(),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
-], UserEntity.prototype, "updatedAt", void 0);
-exports.UserEntity = UserEntity = __decorate([
-    (0, typeorm_1.Entity)('users')
-], UserEntity);
-//# sourceMappingURL=users.entity.js.map
+], Event.prototype, "time", void 0);
+__decorate([
+    (0, typeorm_1.ManyToMany)(() => user_entity_1.User, (user) => user.events),
+    __metadata("design:type", Array)
+], Event.prototype, "users", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], Event.prototype, "qrCode", void 0);
+exports.Event = Event = __decorate([
+    (0, typeorm_1.Entity)()
+], Event);
+//# sourceMappingURL=event.entity.js.map

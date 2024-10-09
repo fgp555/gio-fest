@@ -142,6 +142,7 @@
       // Ejecutar cuando se cargue la página
       document.addEventListener('DOMContentLoaded', function () {
         const userId = getUserIdFromUrl();
+        console.log("ID de usuario:", userId);
         if (userId) {
           fetchUserData(userId); // Llamar la función con el ID del usuario de la URL
         } else {

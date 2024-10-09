@@ -1,44 +1,36 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { UserEntity } from './helpers/users.entity';
-import { CreateUserDto } from './helpers/create-user.dto';
-import { UpdateUserDto } from './helpers/update-user.dto';
+import { User } from './user.entity';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
   ) {}
 
-  async create(createUserDto: CreateUserDto): Promise<UserEntity> {
-    const user = this.userRepository.create(createUserDto);
+  findAll(): Promise<User[]> {
+    return this.userRepository.find({ relations: ['events'] });
+  }
+
+  findOne(id: number): Promise<User> {
+    return this.userRepository.findOne({
+      where: { id },
+      relations: ['events'],
+    });
+  }
+
+  create(user: User): Promise<User> {
     return this.userRepository.save(user);
   }
 
-  async findAll(): Promise<UserEntity[]> {
-    return this.userRepository.find();
-  }
-
-  async findOne(id: string): Promise<UserEntity> {
-    const user = await this.userRepository.findOne({
-      where: { id: Number(id) },
-    });
-    if (!user) {
-      throw new NotFoundException(`User with id ${id} not found`);
-    }
-    return user;
-  }
-
-  async update(id: string, updateUserDto: UpdateUserDto): Promise<UserEntity> {
-    await this.findOne(id);
-    await this.userRepository.update(id, updateUserDto);
+  async update(id: number, user: Partial<User>): Promise<User> {
+    await this.userRepository.update(id, user);
     return this.findOne(id);
   }
 
-  async remove(id: string): Promise<UserEntity> {
-    const user = await this.findOne(id);
-    return await this.userRepository.remove(user);
+  async remove(id: number): Promise<void> {
+    await this.userRepository.delete(id);
   }
 }

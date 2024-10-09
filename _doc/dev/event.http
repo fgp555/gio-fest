@@ -1,0 +1,42 @@
+### EVENT CRUD ###
+
+# Obtener todos los eventos
+GET http://localhost:3000/api/events
+Accept: application/json
+
+###
+
+# Obtener un evento por ID
+GET http://localhost:3000/api/events/1
+Accept: application/json
+
+###
+
+# Crear un nuevo evento
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "name": "Tech Conference 2024",
+  "date": "2024-11-25",
+  "time": "2024-11-25T09:00:00Z",
+  "qrCode": "http://example.com/qrcode.png"
+}
+
+###
+
+# Actualizar un evento existente
+PUT http://localhost:3000/api/events/1
+Content-Type: application/json
+
+{
+  "name": "Updated Tech Conference 2024",
+  "date": "2024-12-01",
+  "time": "2024-12-01T10:00:00Z"
+}
+
+###
+
+# Eliminar un evento
+DELETE http://localhost:3000/api/events/1
+Accept: application/json

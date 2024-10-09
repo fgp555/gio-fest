@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeOrmConfig from './config/typeorm';
 import { UserModule } from './user/user.module';
+import { EventModule } from './event/event.module';
 // import { UserModule } from './modules/users/user.module';
 
 @Module({
@@ -19,6 +20,8 @@ import { UserModule } from './user/user.module';
         configService.get('typeorm'),
     }),
     UserModule,
+    UserModule,
+    EventModule,
   ],
   controllers: [AppController],
   providers: [AppService],

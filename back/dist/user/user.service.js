@@ -16,41 +16,35 @@ exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
-const users_entity_1 = require("./helpers/users.entity");
+const user_entity_1 = require("./user.entity");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
     }
-    async create(createUserDto) {
-        const user = this.userRepository.create(createUserDto);
+    findAll() {
+        return this.userRepository.find({ relations: ['events'] });
+    }
+    findOne(id) {
+        return this.userRepository.findOne({
+            where: { id },
+            relations: ['events'],
+        });
+    }
+    create(user) {
         return this.userRepository.save(user);
     }
-    async findAll() {
-        return this.userRepository.find();
-    }
-    async findOne(id) {
-        const user = await this.userRepository.findOne({
-            where: { id: Number(id) },
-        });
-        if (!user) {
-            throw new common_1.NotFoundException(`User with id ${id} not found`);
-        }
-        return user;
-    }
-    async update(id, updateUserDto) {
-        await this.findOne(id);
-        await this.userRepository.update(id, updateUserDto);
+    async update(id, user) {
+        await this.userRepository.update(id, user);
         return this.findOne(id);
     }
     async remove(id) {
-        const user = await this.findOne(id);
-        return await this.userRepository.remove(user);
+        await this.userRepository.delete(id);
     }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(users_entity_1.UserEntity)),
+    __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], UserService);
 //# sourceMappingURL=user.service.js.map

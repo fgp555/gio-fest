@@ -12,51 +12,57 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserController = void 0;
+exports.EventController = void 0;
 const common_1 = require("@nestjs/common");
-const user_service_1 = require("./user.service");
-const user_entity_1 = require("./user.entity");
-let UserController = class UserController {
-    constructor(userService) {
-        this.userService = userService;
+const event_service_1 = require("./event.service");
+const event_entity_1 = require("./event.entity");
+let EventController = class EventController {
+    constructor(eventService) {
+        this.eventService = eventService;
     }
     findAll() {
-        return this.userService.findAll();
+        return this.eventService.findAll();
     }
     findOne(id) {
-        return this.userService.findOne(id);
+        return this.eventService.findOne(id);
     }
-    create(user) {
-        return this.userService.create(user);
+    create(event) {
+        return this.eventService.create(event);
     }
-    update(id, user) {
-        return this.userService.update(id, user);
+    update(id, event) {
+        return this.eventService.update(id, event);
     }
     remove(id) {
-        return this.userService.remove(id);
+        return this.eventService.remove(id);
+    }
+    addUserToEvent(eventId, userId) {
+        return this.eventService.addUserToEvent(eventId, userId);
+    }
+    removeUserFromEvent(eventId, userId) {
+        return this.eventService.removeUserFromEvent(eventId, userId);
     }
 };
-exports.UserController = UserController;
+exports.EventController = EventController;
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "findAll", null);
+], EventController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "findOne", null);
+], EventController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_entity_1.User]),
+    __metadata("design:paramtypes", [event_entity_1.Event]),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "create", null);
+], EventController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
@@ -64,16 +70,32 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "update", null);
+], EventController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
-], UserController.prototype, "remove", null);
-exports.UserController = UserController = __decorate([
-    (0, common_1.Controller)('users'),
-    __metadata("design:paramtypes", [user_service_1.UserService])
-], UserController);
-//# sourceMappingURL=user.controller.js.map
+], EventController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Post)(':eventId/users/:userId'),
+    __param(0, (0, common_1.Param)('eventId')),
+    __param(1, (0, common_1.Param)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", void 0)
+], EventController.prototype, "addUserToEvent", null);
+__decorate([
+    (0, common_1.Delete)(':eventId/users/:userId'),
+    __param(0, (0, common_1.Param)('eventId')),
+    __param(1, (0, common_1.Param)('userId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", void 0)
+], EventController.prototype, "removeUserFromEvent", null);
+exports.EventController = EventController = __decorate([
+    (0, common_1.Controller)('events'),
+    __metadata("design:paramtypes", [event_service_1.EventService])
+], EventController);
+//# sourceMappingURL=event.controller.js.map

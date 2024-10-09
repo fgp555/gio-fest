@@ -1,0 +1,11 @@
+### Agregar un usuario a un evento ###
+POST http://localhost:3000/api/events/3/users/2
+Accept: application/json
+
+###
+
+### Eliminar un usuario de un evento ###
+DELETE http://localhost:3000/api/events/1/users/1
+Accept: application/json
+
+###
