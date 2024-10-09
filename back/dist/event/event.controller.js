@@ -60,7 +60,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [event_entity_1.Event]),
+    __metadata("design:paramtypes", [event_entity_1.EventEntity]),
     __metadata("design:returntype", void 0)
 ], EventController.prototype, "create", null);
 __decorate([

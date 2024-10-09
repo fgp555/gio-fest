@@ -1,9 +1,9 @@
 // src/user/user.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import { Event } from '../event/event.entity';
+import { EventEntity } from '../event/event.entity';
 
 @Entity()
-export class User {
+export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,9 +22,9 @@ export class User {
   @Column({ nullable: true })
   profilePhoto: string;
 
-  @ManyToMany(() => Event, (event) => event.users)
+  @ManyToMany(() => EventEntity, (event) => event.users)
   @JoinTable()  // Esto indica que `User` es la tabla dueña de la relación.
-  events: Event[];
+  events: EventEntity[];
 
   @Column({ nullable: true })
   qrCode: string;

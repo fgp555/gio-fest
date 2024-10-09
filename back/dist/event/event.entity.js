@@ -9,37 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Event = void 0;
+exports.EventEntity = void 0;
 const typeorm_1 = require("typeorm");
 const user_entity_1 = require("../user/user.entity");
-let Event = class Event {
+let EventEntity = class EventEntity {
 };
-exports.Event = Event;
+exports.EventEntity = EventEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Event.prototype, "id", void 0);
+], EventEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Event.prototype, "name", void 0);
+], EventEntity.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
-], Event.prototype, "date", void 0);
+], EventEntity.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
-], Event.prototype, "time", void 0);
+], EventEntity.prototype, "time", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => user_entity_1.User, (user) => user.events),
+    (0, typeorm_1.ManyToMany)(() => user_entity_1.UserEntity, (user) => user.events),
     __metadata("design:type", Array)
-], Event.prototype, "users", void 0);
+], EventEntity.prototype, "users", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], Event.prototype, "qrCode", void 0);
-exports.Event = Event = __decorate([
+], EventEntity.prototype, "qrCode", void 0);
+exports.EventEntity = EventEntity = __decorate([
     (0, typeorm_1.Entity)()
-], Event);
+], EventEntity);
 //# sourceMappingURL=event.entity.js.map

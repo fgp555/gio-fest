@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Event } from './event.entity';
-import { User } from '../user/user.entity';
+import { EventEntity } from './event.entity';
+import { UserEntity } from '../user/user.entity';
 
 @Injectable()
 export class EventService {
   constructor(
-    @InjectRepository(Event)
-    private eventRepository: Repository<Event>,
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    @InjectRepository(EventEntity)
+    private eventRepository: Repository<EventEntity>,
+    @InjectRepository(UserEntity)
+    private userRepository: Repository<UserEntity>,
   ) {}
 
-  findAll(): Promise<Event[]> {
+  findAll(): Promise<EventEntity[]> {
     return this.eventRepository.find({ relations: ['users'] });
   }
 
-  findOne(id: number): Promise<Event> {
+  findOne(id: number): Promise<EventEntity> {
     return this.eventRepository.findOne({ where: { id }, relations: ['users'] });
   }
 
-  create(event: Event): Promise<Event> {
+  create(event: EventEntity): Promise<EventEntity> {
     return this.eventRepository.save(event);
   }
 
-  async update(id: number, event: Partial<Event>): Promise<Event> {
+  async update(id: number, event: Partial<EventEntity>): Promise<EventEntity> {
     await this.eventRepository.update(id, event);
     return this.findOne(id);
   }
@@ -35,7 +35,7 @@ export class EventService {
   }
 
   // Agregar un usuario a un evento
-  async addUserToEvent(eventId: number, userId: number): Promise<Event> {
+  async addUserToEvent(eventId: number, userId: number): Promise<EventEntity> {
     const event = await this.eventRepository.findOne({
       where: { id: eventId },
       relations: ['users'],
@@ -51,7 +51,7 @@ export class EventService {
   }
 
   // Eliminar un usuario de un evento
-  async removeUserFromEvent(eventId: number, userId: number): Promise<Event> {
+  async removeUserFromEvent(eventId: number, userId: number): Promise<EventEntity> {
     const event = await this.eventRepository.findOne({
       where: { id: eventId },
       relations: ['users'],

@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import typeOrmConfig from './config/typeorm';
 import { UserModule } from './user/user.module';
 import { EventModule } from './event/event.module';
+import { SeederModule } from './seeder/seeder.module';
 // import { UserModule } from './modules/users/user.module';
 
 @Module({
@@ -22,6 +23,7 @@ import { EventModule } from './event/event.module';
     UserModule,
     UserModule,
     EventModule,
+    SeederModule,
   ],
   controllers: [AppController],
   providers: [AppService],

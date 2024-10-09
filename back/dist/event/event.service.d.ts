@@ -1,15 +1,15 @@
 import { Repository } from 'typeorm';
-import { Event } from './event.entity';
-import { User } from '../user/user.entity';
+import { EventEntity } from './event.entity';
+import { UserEntity } from '../user/user.entity';
 export declare class EventService {
     private eventRepository;
     private userRepository;
-    constructor(eventRepository: Repository<Event>, userRepository: Repository<User>);
-    findAll(): Promise<Event[]>;
-    findOne(id: number): Promise<Event>;
-    create(event: Event): Promise<Event>;
-    update(id: number, event: Partial<Event>): Promise<Event>;
+    constructor(eventRepository: Repository<EventEntity>, userRepository: Repository<UserEntity>);
+    findAll(): Promise<EventEntity[]>;
+    findOne(id: number): Promise<EventEntity>;
+    create(event: EventEntity): Promise<EventEntity>;
+    update(id: number, event: Partial<EventEntity>): Promise<EventEntity>;
     remove(id: number): Promise<void>;
-    addUserToEvent(eventId: number, userId: number): Promise<Event>;
-    removeUserFromEvent(eventId: number, userId: number): Promise<Event>;
+    addUserToEvent(eventId: number, userId: number): Promise<EventEntity>;
+    removeUserFromEvent(eventId: number, userId: number): Promise<EventEntity>;
 }

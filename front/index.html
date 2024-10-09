@@ -66,7 +66,7 @@
       // Obtener el parámetro de la URL
       function getUserIdFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get('userId');
+        return urlParams.get("userId");
       }
 
       // Llamada a la API y generación de QR
@@ -79,7 +79,7 @@
         eventsContainer.innerHTML = ""; // Limpiar eventos
 
         // Realizar la solicitud al backend para obtener el usuario
-        fetch(`http://localhost:3000/api/users/${userId}`, {
+        fetch(`/api/users/${userId}`, {
           method: "GET",
           headers: {
             Accept: "application/json",
@@ -140,13 +140,12 @@
       }
 
       // Ejecutar cuando se cargue la página
-      document.addEventListener('DOMContentLoaded', function () {
-        const userId = getUserIdFromUrl();
-        if (userId) {
-          fetchUserData(userId); // Llamar la función con el ID del usuario de la URL
-        } else {
-          document.getElementById("qrCode").innerHTML = "No se proporcionó un ID de usuario.";
+      document.addEventListener("DOMContentLoaded", function () {
+        let userId = getUserIdFromUrl();
+        if (!userId) {
+          userId = 2; // ID por defecto
         }
+        fetchUserData(userId); // Llamar la función con el ID del usuario de la URL o por defecto
       });
     </script>
   </body>

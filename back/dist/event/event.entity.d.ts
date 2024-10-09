@@ -1,9 +1,9 @@
-import { User } from '../user/user.entity';
-export declare class Event {
+import { UserEntity } from '../user/user.entity';
+export declare class EventEntity {
     id: number;
     name: string;
     date: Date;
     time: Date;
-    users: User[];
+    users: UserEntity[];
     qrCode: string;
 }

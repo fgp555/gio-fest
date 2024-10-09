@@ -54,7 +54,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_entity_1.User]),
+    __metadata("design:paramtypes", [user_entity_1.UserEntity]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "create", null);
 __decorate([

@@ -6,6 +6,7 @@ const common_1 = require("@nestjs/common");
 const morgan = require("morgan");
 const cors = require("cors");
 const path_1 = require("path");
+const seeder_service_1 = require("./seeder/seeder.service");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api');
@@ -20,6 +21,8 @@ async function bootstrap() {
     app.useStaticAssets((0, path_1.join)(__dirname, '..', '..', 'front'), {
         prefix: '/',
     });
+    const seederService = app.get(seeder_service_1.SeederService);
+    await seederService.seed();
     await app.listen(3000);
     common_1.Logger.log(`Application is running on: http://localhost:3000`);
 }

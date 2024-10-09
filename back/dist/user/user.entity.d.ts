@@ -1,11 +1,11 @@
-import { Event } from '../event/event.entity';
-export declare class User {
+import { EventEntity } from '../event/event.entity';
+export declare class UserEntity {
     id: number;
     name: string;
     email: string;
     password: string;
     isAdmin: boolean;
     profilePhoto: string;
-    events: Event[];
+    events: EventEntity[];
     qrCode: string;
 }

@@ -5,6 +5,7 @@ import * as morgan from 'morgan';
 import * as cors from 'cors';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
+import { SeederService } from './seeder/seeder.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -23,6 +24,9 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', '..', 'front'), {
     prefix: '/',
   });
+
+  const seederService = app.get(SeederService);
+  await seederService.seed();
 
   await app.listen(3000);
   Logger.log(`Application is running on: http://localhost:3000`);

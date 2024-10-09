@@ -1,9 +1,9 @@
 // src/event/event.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
-import { User } from '../user/user.entity';
+import { UserEntity } from '../user/user.entity';
 
 @Entity()
-export class Event {
+export class EventEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -16,8 +16,8 @@ export class Event {
   @Column()
   time: Date;
 
-  @ManyToMany(() => User, (user) => user.events)
-  users: User[];
+  @ManyToMany(() => UserEntity, (user) => user.events)
+  users: UserEntity[];
 
   @Column({ nullable: true })
   qrCode: string;

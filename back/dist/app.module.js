@@ -15,6 +15,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("./config/typeorm");
 const user_module_1 = require("./user/user.module");
 const event_module_1 = require("./event/event.module");
+const seeder_module_1 = require("./seeder/seeder.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,6 +33,7 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             user_module_1.UserModule,
             event_module_1.EventModule,
+            seeder_module_1.SeederModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

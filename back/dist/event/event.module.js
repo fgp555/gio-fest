@@ -18,7 +18,7 @@ let EventModule = class EventModule {
 exports.EventModule = EventModule;
 exports.EventModule = EventModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([event_entity_1.Event, user_entity_1.User])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([event_entity_1.EventEntity, user_entity_1.UserEntity])],
         providers: [event_service_1.EventService],
         controllers: [event_controller_1.EventController],
     })

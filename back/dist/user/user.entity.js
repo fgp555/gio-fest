@@ -9,46 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.User = void 0;
+exports.UserEntity = void 0;
 const typeorm_1 = require("typeorm");
 const event_entity_1 = require("../event/event.entity");
-let User = class User {
+let UserEntity = class UserEntity {
 };
-exports.User = User;
+exports.UserEntity = UserEntity;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], User.prototype, "id", void 0);
+], UserEntity.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], UserEntity.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
-], User.prototype, "email", void 0);
+], UserEntity.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
+], UserEntity.prototype, "password", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: false }),
     __metadata("design:type", Boolean)
-], User.prototype, "isAdmin", void 0);
+], UserEntity.prototype, "isAdmin", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], User.prototype, "profilePhoto", void 0);
+], UserEntity.prototype, "profilePhoto", void 0);
 __decorate([
-    (0, typeorm_1.ManyToMany)(() => event_entity_1.Event, (event) => event.users),
+    (0, typeorm_1.ManyToMany)(() => event_entity_1.EventEntity, (event) => event.users),
     (0, typeorm_1.JoinTable)(),
     __metadata("design:type", Array)
-], User.prototype, "events", void 0);
+], UserEntity.prototype, "events", void 0);
 __decorate([
     (0, typeorm_1.Column)({ nullable: true }),
     __metadata("design:type", String)
-], User.prototype, "qrCode", void 0);
-exports.User = User = __decorate([
+], UserEntity.prototype, "qrCode", void 0);
+exports.UserEntity = UserEntity = __decorate([
     (0, typeorm_1.Entity)()
-], User);
+], UserEntity);
 //# sourceMappingURL=user.entity.js.map
